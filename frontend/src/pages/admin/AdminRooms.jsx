@@ -10,6 +10,8 @@ export default function AdminRooms() {
     const [error, setError] = useState('');
     const [form, setForm] = useState(emptyForm);
     const [showForm, setShowForm] = useState(false);
+    const [imageFile, setImageFile] = useState(null);
+    const [editingRoomId, setEditingRoomId] = useState(null);
 
     useEffect(() => {
         loadRooms();
@@ -28,16 +30,59 @@ export default function AdminRooms() {
         setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
     }
 
-    async function handleCreate(e) {
+    function handleFileChange(e) {
+        setImageFile(e.target.files[0]);
+    }
+
+    async function handleSave(e) {
         e.preventDefault();
         try {
-            const res = await api.post('/admin/rooms', form);
-            setRooms((prev) => [res.data, ...prev]);
+            const formData = new FormData();
+            formData.append('name', form.name);
+            formData.append('description', form.description);
+            formData.append('pricePerNight', form.pricePerNight);
+            formData.append('maxGuests', form.maxGuests);
+            if (imageFile) {
+                formData.append('image', imageFile);
+            }
+
+            if (editingRoomId) {
+                const res = await api.patch(`/admin/rooms/${editingRoomId}`, formData, {
+                    headers: { 'Content-Type': 'multipart/form-data' }
+                });
+                setRooms((prev) => prev.map((r) => (r._id === editingRoomId ? res.data : r)));
+            } else {
+                const res = await api.post('/admin/rooms', formData, {
+                    headers: { 'Content-Type': 'multipart/form-data' }
+                });
+                setRooms((prev) => [res.data, ...prev]);
+            }
             setForm(emptyForm);
+            setImageFile(null);
+            setEditingRoomId(null);
             setShowForm(false);
         } catch {
-            setError('Could not create room');
+            setError('Could not save room');
         }
+    }
+    
+    function startEdit(room) {
+        setForm({
+            name: room.name,
+            description: room.description,
+            pricePerNight: room.pricePerNight,
+            maxGuests: room.maxGuests
+        });
+        setImageFile(null);
+        setEditingRoomId(room._id);
+        setShowForm(true);
+    }
+
+    function handleCancel() {
+        setShowForm(false);
+        setForm(emptyForm);
+        setImageFile(null);
+        setEditingRoomId(null);
     }
 
     async function toggleActive(room) {
@@ -56,8 +101,17 @@ export default function AdminRooms() {
             <div className="flex items-center justify-between mb-6">
                 <h1 className="font-display italic text-3xl">Rooms & suites</h1>
                 <button
-                    onClick={() => setShowForm((s) => !s)}
-                    className="bg-[--moss] text-[--parchment] px-4 py-2 text-sm hover:bg-[--ink] transition-colors"
+                    onClick={() => {
+                        if (showForm) {
+                            handleCancel();
+                        } else {
+                            setForm(emptyForm);
+                            setImageFile(null);
+                            setEditingRoomId(null);
+                            setShowForm(true);
+                        }
+                    }}
+                    className="bg-moss text-parchment px-6 py-3 text-sm hover:bg-ink transition-colors rounded-sm"
                 >
                     {showForm ? 'Cancel' : 'Add room'}
                 </button>
@@ -66,7 +120,16 @@ export default function AdminRooms() {
             {error && <p className="text-sm text-[--clay] mb-4">{error}</p>}
 
             {showForm && (
-                <form onSubmit={handleCreate} className="ticket-border p-6 mb-8 grid gap-4 max-w-md">
+                <form onSubmit={handleSave} className="ticket-border p-6 mb-8 grid gap-4 max-w-md">
+                    <label className="text-sm">
+                        Image
+                        <input
+                            type="file"
+                            accept="image/*"
+                            onChange={handleFileChange}
+                            className="mt-1 w-full border border-[--ink]/30 bg-transparent px-3 py-2 text-sm"
+                        />
+                    </label>
                     <label className="text-sm">
                         Name
                         <input
@@ -112,7 +175,7 @@ export default function AdminRooms() {
                     </div>
                     <button
                         type="submit"
-                        className="bg-[--moss] text-[--parchment] px-6 py-3 text-sm hover:bg-[--ink] transition-colors"
+                        className="bg-moss text-parchment px-6 py-3 text-sm hover:bg-ink transition-colors mt-4 rounded-sm"
                     >
                         Save room
                     </button>
@@ -126,16 +189,21 @@ export default function AdminRooms() {
                     {rooms.map((r) => (
                         <div key={r._id} className="ticket-border p-6">
                             <div className="flex items-start justify-between gap-4">
-                                <div>
-                                    <p className="font-display text-xl">{r.name}</p>
-                                    <p className="text-sm text-[--clay] mt-1">
-                                        ${r.pricePerNight} / night · {r.maxGuests} guests
-                                    </p>
+                                <div className="flex gap-4">
+                                    {r.image && (
+                                        <img src={r.image} alt={r.name} className="h-16 w-16 object-cover rounded-sm" />
+                                    )}
+                                    <div>
+                                        <p className="font-display text-xl">{r.name}</p>
+                                        <p className="text-sm text-[--clay] mt-1">
+                                            ${r.pricePerNight} / night · {r.maxGuests} guests
+                                        </p>
+                                    </div>
                                 </div>
                                 <span
-                                    className={`text-xs px-2 py-1 border ${r.isActive
-                                        ? 'border-[--sage] text-[--sage]'
-                                        : 'border-[--clay] text-[--clay]'
+                                    className={`text-xs px-2 py-1 border rounded-sm font-medium ${r.isActive
+                                        ? 'border-sage text-sage bg-sage/10'
+                                        : 'border-clay text-clay bg-clay/10'
                                         }`}
                                 >
                                     {r.isActive ? 'Active' : 'Inactive'}
@@ -144,12 +212,20 @@ export default function AdminRooms() {
                             {r.description && (
                                 <p className="text-sm text-[--ink]/70 mt-3">{r.description}</p>
                             )}
-                            <button
-                                onClick={() => toggleActive(r)}
-                                className="text-sm underline underline-offset-4 mt-4"
-                            >
-                                {r.isActive ? 'Deactivate' : 'Activate'}
-                            </button>
+                            <div className="mt-5 flex gap-3">
+                                <button
+                                    onClick={() => toggleActive(r)}
+                                    className="border border-ink/30 px-3 py-1.5 text-xs hover:bg-moss hover:text-parchment hover:border-moss transition-colors rounded-sm"
+                                >
+                                    {r.isActive ? 'Deactivate' : 'Activate'}
+                                </button>
+                                <button
+                                    onClick={() => startEdit(r)}
+                                    className="border border-ink/30 px-3 py-1.5 text-xs hover:bg-moss hover:text-parchment hover:border-moss transition-colors rounded-sm"
+                                >
+                                    Edit
+                                </button>
+                            </div>
                         </div>
                     ))}
                 </div>

@@ -7,7 +7,7 @@ import Contact from './pages/Contact';
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminHome from './pages/admin/AdminHome';
 import RequireAdmin from './components/RequireAdmin';
-import AdminBookings from './pages/admin/AdminBookings';
+import AdminTreatments from './pages/admin/AdminTreatments';
 import AdminRooms from './pages/admin/AdminRooms';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminSettings from './pages/admin/AdminSettings';
@@ -31,7 +31,7 @@ export default function App() {
         {/* Protected admin routes */}
         <Route path="/admin" element={<RequireAdmin><Navigate to="/admin/dashboard" replace /></RequireAdmin>} />
         <Route path="/admin/dashboard" element={<RequireAdmin><AdminDashboard /></RequireAdmin>} />
-        <Route path="/admin/bookings" element={<RequireAdmin><AdminBookings /></RequireAdmin>} />
+        <Route path="/admin/treatments" element={<RequireAdmin><AdminTreatments /></RequireAdmin>} />
         <Route path="/admin/rooms" element={<RequireAdmin><AdminRooms /></RequireAdmin>} />
         <Route path="/admin/content" element={<RequireAdmin><AdminContent /></RequireAdmin>} />
         <Route path="/admin/staff" element={<RequireAdmin><AdminUsers /></RequireAdmin>} />

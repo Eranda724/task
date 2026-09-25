@@ -55,7 +55,7 @@ export default function AdminContent() {
                 <button
                     type="submit"
                     disabled={status.state === 'loading'}
-                    className="bg-[--moss] text-[--parchment] px-6 py-3 text-sm hover:bg-[--ink] transition-colors disabled:opacity-60 w-fit"
+                    className="bg-moss text-parchment px-6 py-3 text-sm hover:bg-ink transition-colors disabled:opacity-60 w-fit rounded-sm"
                 >
                     {status.state === 'loading' ? 'Saving...' : 'Save changes'}
                 </button>

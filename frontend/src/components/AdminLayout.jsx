@@ -13,7 +13,7 @@ export default function AdminLayout({ children }) {
 
     const navLinks = [
         { path: '/admin/dashboard', label: 'Dashboard' },
-        { path: '/admin/bookings', label: 'Bookings' },
+        { path: '/admin/treatments', label: 'Treatments' },
         { path: '/admin/rooms', label: 'Rooms' },
         { path: '/admin/content', label: 'Content' },
         { path: '/admin/staff', label: 'Staff' },

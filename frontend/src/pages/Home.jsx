@@ -48,9 +48,11 @@ const dayPlan = [
 
 export default function Home() {
     const [content, setContent] = useState({});
+    const [rooms, setRooms] = useState([]);
 
     useEffect(() => {
         api.get('/content').then((res) => setContent(res.data));
+        api.get('/rooms').then((res) => setRooms(res.data));
     }, []);
     return (
         <div className="min-h-screen bg-[--parchment] text-[--ink]">
@@ -66,7 +68,7 @@ export default function Home() {
                         {content.heroTitle || 'Ayurveda, carried across the water and set down on the coast.'}
                     </h1>
                     <p className="mt-6 max-w-md text-[15px] leading-relaxed text-[--ink]/80">
-                        {content.heroIntro || 'Sri Ayu brings Sri Lankan Ayurvedic tradition to a single property on the water - five suites, a treatment house, and a kitchen that cooks for your constitution rather than a menu.'}
+                        {content.heroIntro || `Sri Ayu brings Sri Lankan Ayurvedic tradition to a single property on the water - ${rooms.length || 5} suites, a treatment house, and a kitchen that cooks for your constitution rather than a menu.`}
                     </p>
                     <div className="mt-8 flex items-center gap-6">
                         <Link
@@ -160,7 +162,7 @@ export default function Home() {
                 <div className="order-1 md:order-2">
                     <h2 className="font-display italic text-3xl mb-4">The property</h2>
                     <p className="text-sm leading-relaxed text-[--ink]/80 max-w-md">
-                        Five suites, each facing the water, built from timber and stone
+                        {rooms.length || 5} suites, each facing the water, built from timber and stone
                         sourced within a day's drive. No televisions, no minibars - a
                         reading corner, a private steam room, and a bed made for
                         twelve hours of sleep. The treatment house sits apart, reachable

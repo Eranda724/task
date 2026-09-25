@@ -11,6 +11,8 @@ const statsRoutes = require('./routes/statsRoutes');
 const accountRoutes = require('./routes/accountRoutes');
 const userRoutes = require('./routes/userRoutes');
 const contentRoutes = require('./routes/contentRoutes');
+const treatmentRoutes = require('./routes/treatmentRoutes');
+const adminTreatmentRoutes = require('./routes/adminTreatmentRoutes');
 
 const app = express();
 
@@ -28,6 +30,8 @@ app.use('/api/admin', statsRoutes);
 app.use('/api/admin', accountRoutes);
 app.use('/api/admin', userRoutes);
 app.use('/api', contentRoutes);
+app.use('/api', treatmentRoutes);
+app.use('/api/admin', adminTreatmentRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
