@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+@theme {
+  --color-parchment: #EAE1CE;
+  --color-ink:       #211D17;
+  --color-moss:      #2B3A2A;
+  --color-sage:      #7C8C6B;
+  --color-clay:      #9C5A3C;
+  --color-ochre:     #B4802A;
+
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-sans:    'Inter', system-ui, sans-serif;
+}
+
+/* ── CSS custom properties (for inline style refs like text-[--moss]) ── */
+:root {
+  --parchment: #EAE1CE;
+  --ink:       #211D17;
+  --moss:      #2B3A2A;
+  --sage:      #7C8C6B;
+  --clay:      #9C5A3C;
+  --ochre:     #B4802A;
+}
+
+/* ── Base resets ── */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--parchment);
+  color: var(--ink);
+  font-family: var(--font-sans, system-ui, sans-serif);
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Custom component helpers ── */
+
+/* Dashed-ticket border used on cards and forms */
+.ticket-border {
+  border: 1px dashed color-mix(in srgb, var(--ink) 35%, transparent);
+}
+
+/* Decorative SVG leaf divider sizing */
+.leaf-divider {
+  width: 200px;
+  height: 22px;
+  display: block;
+  margin-block: 1rem;
+}
+
+/* Google Fonts — loaded via <link> in index.html */
