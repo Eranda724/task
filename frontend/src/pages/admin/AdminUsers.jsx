@@ -87,7 +87,7 @@ export default function AdminUsers() {
             <div className="grid gap-2">
                 {users.map((u) => (
                     <div key={u._id} className="text-sm border-b border-[--ink]/10 pb-2">
-                        {u.name} — {u.email}
+                        {u.name} - {u.email}
                     </div>
                 ))}
             </div>

@@ -41,7 +41,9 @@ export default function AdminBookings() {
 
     return (
         <AdminLayout>
-            <h1 className="font-display italic text-3xl mb-6">Bookings</h1>
+            <div className="flex items-center justify-between mb-10">
+                <h1 className="font-display italic text-4xl">Bookings</h1>
+            </div>
 
             {loading && <p className="text-sm text-[--ink]/60">Loading...</p>}
             {error && <p className="text-sm text-[--clay] mb-4">{error}</p>}
@@ -51,46 +53,57 @@ export default function AdminBookings() {
             )}
 
             {!loading && bookings.length > 0 && (
-                <div className="overflow-x-auto">
-                    <table className="w-full text-sm border-collapse">
-                        <thead>
-                            <tr className="text-left border-b border-[--ink]/20">
-                                <th className="py-3 pr-4">Guest</th>
-                                <th className="py-3 pr-4">Room</th>
-                                <th className="py-3 pr-4">Check-in</th>
-                                <th className="py-3 pr-4">Check-out</th>
-                                <th className="py-3 pr-4">Guests</th>
-                                <th className="py-3 pr-4">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {bookings.map((b) => (
-                                <tr key={b._id} className="border-b border-[--ink]/10">
-                                    <td className="py-3 pr-4">
-                                        <p>{b.guestName}</p>
-                                        <p className="text-[--ink]/50 text-xs">{b.email}</p>
-                                    </td>
-                                    <td className="py-3 pr-4">{b.room?.name || '—'}</td>
-                                    <td className="py-3 pr-4">{formatDate(b.checkIn)}</td>
-                                    <td className="py-3 pr-4">{formatDate(b.checkOut)}</td>
-                                    <td className="py-3 pr-4">{b.guests}</td>
-                                    <td className="py-3 pr-4">
-                                        <select
-                                            value={b.status}
-                                            onChange={(e) => handleStatusChange(b._id, e.target.value)}
-                                            className="border border-[--ink]/30 bg-transparent px-2 py-1 text-sm"
-                                        >
-                                            {statusOptions.map((s) => (
-                                                <option key={s} value={s}>
-                                                    {s}
-                                                </option>
-                                            ))}
-                                        </select>
-                                    </td>
+                <div className="bg-white rounded-2xl shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] border border-black/5 overflow-hidden">
+                    <div className="overflow-x-auto">
+                        <table className="w-full text-[15px] border-collapse">
+                            <thead>
+                                <tr className="text-left border-b border-black/5 bg-black/[0.02]">
+                                    <th className="py-4 px-6 font-semibold text-[--ink] opacity-60 text-sm">Guest</th>
+                                    <th className="py-4 px-6 font-semibold text-[--ink] opacity-60 text-sm">Room</th>
+                                    <th className="py-4 px-6 font-semibold text-[--ink] opacity-60 text-sm">Check-in</th>
+                                    <th className="py-4 px-6 font-semibold text-[--ink] opacity-60 text-sm">Check-out</th>
+                                    <th className="py-4 px-6 font-semibold text-[--ink] opacity-60 text-sm text-center">Guests</th>
+                                    <th className="py-4 px-6 font-semibold text-[--ink] opacity-60 text-sm">Status</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                        </thead>
+                            <tbody>
+                                {bookings.map((b, index) => (
+                                    <tr 
+                                        key={b._id} 
+                                        className={`hover:bg-black/[0.02] transition-colors ${
+                                            index !== bookings.length - 1 ? 'border-b border-black/5' : ''
+                                        }`}
+                                    >
+                                        <td className="py-4 px-6">
+                                            <p className="font-medium">{b.guestName}</p>
+                                            <p className="text-[--ink] opacity-50 text-xs mt-0.5">{b.email}</p>
+                                        </td>
+                                        <td className="py-4 px-6 text-[--ink] opacity-80">{b.room?.name || '-'}</td>
+                                        <td className="py-4 px-6 text-[--ink] opacity-80">{formatDate(b.checkIn)}</td>
+                                        <td className="py-4 px-6 text-[--ink] opacity-80">{formatDate(b.checkOut)}</td>
+                                        <td className="py-4 px-6 text-center text-[--ink] opacity-80">{b.guests}</td>
+                                        <td className="py-4 px-6">
+                                            <select
+                                                value={b.status}
+                                                onChange={(e) => handleStatusChange(b._id, e.target.value)}
+                                                className={`border border-black/10 rounded-lg px-3 py-1.5 text-sm font-medium outline-none transition-colors ${
+                                                    b.status === 'confirmed' ? 'bg-[--sage]/10 text-[--moss] border-[--sage]/20' : 
+                                                    b.status === 'cancelled' ? 'bg-red-50 text-red-700 border-red-100' : 
+                                                    'bg-gray-50 text-gray-700'
+                                                }`}
+                                            >
+                                                {statusOptions.map((s) => (
+                                                    <option key={s} value={s}>
+                                                        {s.charAt(0).toUpperCase() + s.slice(1)}
+                                                    </option>
+                                                ))}
+                                            </select>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             )}
         </AdminLayout>

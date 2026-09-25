@@ -15,7 +15,7 @@ export default function AdminSettings() {
         setStatus({ state: 'loading', message: '' });
         try {
             const res = await api.patch('/admin/account', form);
-            setStatus({ state: 'success', message: `Updated — logged in as ${res.data.email}` });
+            setStatus({ state: 'success', message: `Updated - logged in as ${res.data.email}` });
             setForm({ currentPassword: '', newEmail: '', newPassword: '' });
         } catch (err) {
             setStatus({ state: 'error', message: err.response?.data?.error || 'Update failed' });

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import api from '../lib/api';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -36,7 +37,7 @@ const dayPlan = [
     {
         time: 'Midday',
         title: 'Treatment & rest',
-        note: 'Your scheduled therapy, followed by a quiet hour — no phones, no plans.',
+        note: 'Your scheduled therapy, followed by a quiet hour - no phones, no plans.',
     },
     {
         time: 'Evening',
@@ -65,28 +66,24 @@ export default function Home() {
                         {content.heroTitle || 'Ayurveda, carried across the water and set down on the coast.'}
                     </h1>
                     <p className="mt-6 max-w-md text-[15px] leading-relaxed text-[--ink]/80">
-                        {content.heroIntro || 'Sri Ayu brings Sri Lankan Ayurvedic tradition to a single property on the water — five suites, a treatment house, and a kitchen that cooks for your constitution rather than a menu.'}
+                        {content.heroIntro || 'Sri Ayu brings Sri Lankan Ayurvedic tradition to a single property on the water - five suites, a treatment house, and a kitchen that cooks for your constitution rather than a menu.'}
                     </p>
                     <div className="mt-8 flex items-center gap-6">
-                        <a
-                            href="#booking"
+                        <Link
+                            to="/contact"
                             className="bg-[--moss] text-[--parchment] px-6 py-3 text-sm hover:bg-[--ink] transition-colors"
                         >
                             Check availability
-                        </a>
+                        </Link>
                         <a href="#treatments" className="text-sm underline underline-offset-4">
                             See the treatments
                         </a>
                     </div>
                 </div>
-
-                {/* PHOTO: replace with a tall image of the property / coastline */}
-                <div
-                    className="md:col-span-2 h-72 md:h-[520px] w-full"
-                    style={{
-                        background:
-                            'linear-gradient(160deg, #7C8C6B 0%, #2B3A2A 55%, #211D17 100%)',
-                    }}
+                <img
+                    src="/hero.jpg"
+                    alt="Sri Ayu property on the NSW coast"
+                    className="md:col-span-2 aspect-video w-full object-cover rounded-sm"
                 />
             </section>
 
@@ -95,15 +92,25 @@ export default function Home() {
             </div>
 
             {/* Philosophy */}
-            <section className="px-6 md:px-12 py-16 max-w-2xl">
-                <p className="font-display italic text-2xl md:text-3xl leading-snug border-l-2 border-[--sage] pl-6">
-                    "Ayurveda doesn't treat a symptom. It reads the whole person — the
-                    season, the appetite, the sleep — before it offers anything at all."
+            <section className="px-6 md:px-12 py-16 md:py-24">
+                <p className="font-display italic text-3xl md:text-5xl lg:text-6xl leading-tight border-l-4 border-[--sage] pl-6 md:pl-10 text-[--moss]">
+                    "Ayurveda doesn't treat a symptom.
+                    It reads the whole person
+                    the season,
+                    the appetite,
+                    the sleep
+
+                    before it offers anything at all."
                 </p>
-                <p className="mt-4 text-sm text-[--ink]/70 pl-6">
+                <p className="mt-6 md:mt-8 text-base md:text-lg text-[--ink]/70 pl-6 md:pl-10 font-medium tracking-wide">
                     Our lead practitioner trained in Sri Lanka for twelve years before
                     bringing the practice here.
                 </p>
+            </section>
+
+            {/* History Image */}
+            <section className="px-6 md:px-12 pb-10 flex justify-center">
+                <img src="/history.jpg" alt="History" className="w-full max-w-3xl h-auto object-cover rounded-sm" />
             </section>
 
             {/* Treatments */}
@@ -145,18 +152,16 @@ export default function Home() {
 
             {/* Property */}
             <section id="property" className="grid md:grid-cols-2 px-6 md:px-12 py-16 gap-10 items-center">
-                {/* PHOTO: replace with an image of a suite or the treatment house */}
-                <div
-                    className="h-64 md:h-96 w-full order-2 md:order-1"
-                    style={{
-                        background: 'linear-gradient(200deg, #EAE1CE 0%, #B4802A 45%, #9C5A3C 100%)',
-                    }}
+                <img
+                    src="/suite.jpg"
+                    alt="Suite interior at Sri Ayu"
+                    className="h-64 md:h-96 w-full object-cover order-2 md:order-1"
                 />
                 <div className="order-1 md:order-2">
                     <h2 className="font-display italic text-3xl mb-4">The property</h2>
                     <p className="text-sm leading-relaxed text-[--ink]/80 max-w-md">
                         Five suites, each facing the water, built from timber and stone
-                        sourced within a day's drive. No televisions, no minibars — a
+                        sourced within a day's drive. No televisions, no minibars - a
                         reading corner, a private steam room, and a bed made for
                         twelve hours of sleep. The treatment house sits apart, reachable
                         by a short path through she-oaks.
@@ -164,47 +169,6 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* Booking */}
-            <section id="booking" className="px-6 md:px-12 py-20">
-                <div className="ticket-border max-w-xl mx-auto p-8 md:p-12 bg-[--parchment]">
-                    <h2 className="font-display italic text-3xl mb-2">Check availability</h2>
-                    <p className="text-sm text-[--ink]/70 mb-8">
-                        Stays run Sunday to Sunday. We'll confirm your dosha consultation
-                        once you book.
-                    </p>
-                    <form className="grid gap-5">
-                        <div className="grid grid-cols-2 gap-4">
-                            <label className="text-sm">
-                                Arrive
-                                <input
-                                    type="date"
-                                    className="mt-1 w-full border border-[--ink]/30 bg-transparent px-3 py-2 text-sm"
-                                />
-                            </label>
-                            <label className="text-sm">
-                                Depart
-                                <input
-                                    type="date"
-                                    className="mt-1 w-full border border-[--ink]/30 bg-transparent px-3 py-2 text-sm"
-                                />
-                            </label>
-                        </div>
-                        <label className="text-sm">
-                            Guests
-                            <select className="mt-1 w-full border border-[--ink]/30 bg-transparent px-3 py-2 text-sm">
-                                <option>1 guest</option>
-                                <option>2 guests</option>
-                            </select>
-                        </label>
-                        <button
-                            type="submit"
-                            className="mt-2 bg-[--moss] text-[--parchment] px-6 py-3 text-sm hover:bg-[--ink] transition-colors"
-                        >
-                            Check availability
-                        </button>
-                    </form>
-                </div>
-            </section>
 
             <Footer />
         </div>

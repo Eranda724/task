@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Home from './pages/Home';
 import Treatments from './pages/Treatments';
 import PropertyDetail from './pages/PropertyDetail';
@@ -29,7 +29,7 @@ export default function App() {
         <Route path="/admin/login" element={<AdminLogin />} />
 
         {/* Protected admin routes */}
-        <Route path="/admin" element={<RequireAdmin><AdminHome /></RequireAdmin>} />
+        <Route path="/admin" element={<RequireAdmin><Navigate to="/admin/dashboard" replace /></RequireAdmin>} />
         <Route path="/admin/dashboard" element={<RequireAdmin><AdminDashboard /></RequireAdmin>} />
         <Route path="/admin/bookings" element={<RequireAdmin><AdminBookings /></RequireAdmin>} />
         <Route path="/admin/rooms" element={<RequireAdmin><AdminRooms /></RequireAdmin>} />

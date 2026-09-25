@@ -1,7 +1,14 @@
+import { useState, useEffect } from 'react';
+import api from '../lib/api';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 export default function Contact() {
+    const [content, setContent] = useState({});
+
+    useEffect(() => {
+        api.get('/content').then((res) => setContent(res.data));
+    }, []);
     return (
         <div className="min-h-screen bg-[--parchment] text-[--ink]">
             <Header />
@@ -13,13 +20,13 @@ export default function Contact() {
                         Questions before you book.
                     </h1>
                     <p className="text-sm leading-relaxed text-[--ink]/80 max-w-sm">
-                        For anything about a stay already booked, email us directly —
+                        For anything about a stay already booked, email us directly -
                         we reply faster than the form below.
                     </p>
                     <div className="mt-8 text-sm space-y-2 text-[--ink]/80">
-                        <p>hello@sriayu.example</p>
-                        <p>+61 2 0000 0000</p>
-                        <p>[Property address], NSW, Australia</p>
+                        <p>{content.propertyEmail || 'hello@sriayu.example'}</p>
+                        <p>{content.propertyPhone || '+61 2 0000 0000'}</p>
+                        <p>{content.propertyAddress || '[Property address], NSW, Australia'}</p>
                     </div>
                 </div>
 

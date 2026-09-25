@@ -7,13 +7,13 @@ const treatments = [
         name: 'Abhyanga',
         duration: '75 min',
         price: '$220',
-        note: 'A full-body warm oil massage, done in long rhythmic strokes by two therapists working in sync. Calms the nervous system before it does anything else — most guests fall asleep partway through.',
+        note: 'A full-body warm oil massage, done in long rhythmic strokes by two therapists working in sync. Calms the nervous system before it does anything else - most guests fall asleep partway through.',
     },
     {
         name: 'Shirodhara',
         duration: '60 min',
         price: '$190',
-        note: 'A slow, continuous stream of warm herbal oil poured across the forehead. Traditionally used for a mind that won\'t settle — insomnia, overthinking, the low hum of stress that doesn\'t have one cause.',
+        note: 'A slow, continuous stream of warm herbal oil poured across the forehead. Traditionally used for a mind that won\'t settle - insomnia, overthinking, the low hum of stress that doesn\'t have one cause.',
     },
     {
         name: 'Panchakarma',
@@ -46,16 +46,23 @@ export default function Treatments() {
         <div className="min-h-screen bg-[--parchment] text-[--ink]">
             <Header />
 
-            <section className="px-6 md:px-12 pt-8 md:pt-16 pb-10">
-                <p className="text-sm text-[--clay] mb-4">Rituals & treatments</p>
-                <h1 className="font-display italic text-4xl md:text-5xl max-w-xl leading-tight">
-                    Every treatment starts with a question, not a menu.
-                </h1>
-                <p className="mt-6 max-w-md text-[15px] leading-relaxed text-[--ink]/80">
-                    Your first session is a short consultation with our practitioner —
-                    what you're sleeping like, eating like, carrying. What's booked
-                    below is a starting point; it often changes once you arrive.
-                </p>
+            <section className="grid md:grid-cols-5 px-6 md:px-12 pt-8 md:pt-16 pb-10 gap-10 items-center">
+                <div className="md:col-span-3">
+                    <p className="text-sm text-[--clay] mb-4">Rituals & treatments</p>
+                    <h1 className="font-display italic text-4xl md:text-5xl max-w-xl leading-tight">
+                        Every treatment starts with a question, not a menu.
+                    </h1>
+                    <p className="mt-6 max-w-md text-[15px] leading-relaxed text-[--ink]/80">
+                        Your first session is a short consultation with our practitioner -
+                        what you're sleeping like, eating like, carrying. What's booked
+                        below is a starting point; it often changes once you arrive.
+                    </p>
+                </div>
+                <img
+                    src="/treatment-hero.jpg"
+                    alt="Ayurvedic treatments at Sri Ayu"
+                    className="md:col-span-2 aspect-video w-full object-cover rounded-sm"
+                />
             </section>
 
             <div className="px-6 md:px-12">

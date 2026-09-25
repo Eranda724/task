@@ -6,6 +6,7 @@ const fields = [
     { key: 'propertyName', label: 'Property name' },
     { key: 'propertyAddress', label: 'Property address' },
     { key: 'propertyPhone', label: 'Phone number' },
+    { key: 'propertyEmail', label: 'Email address' },
     { key: 'heroLabel', label: 'Hero label (small text above headline)' },
     { key: 'heroTitle', label: 'Hero headline' },
     { key: 'heroIntro', label: 'Hero intro paragraph' },

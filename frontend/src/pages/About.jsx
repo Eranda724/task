@@ -7,18 +7,25 @@ export default function About() {
         <div className="min-h-screen bg-[--parchment] text-[--ink]">
             <Header />
 
-            <section className="px-6 md:px-12 pt-8 md:pt-16 pb-12 max-w-2xl">
-                <p className="text-sm text-[--clay] mb-4">About</p>
-                <h1 className="font-display italic text-4xl md:text-5xl leading-tight">
-                    Twelve years in Sri Lanka, before any of this existed.
-                </h1>
-                <p className="mt-6 text-[15px] leading-relaxed text-[--ink]/80">
-                    Our lead practitioner trained at a small clinic outside Kandy,
-                    under a teacher who took on very few outside students. Sri Ayu
-                    started as a question — whether that same slow, attentive
-                    practice could work somewhere entirely different, on the other
-                    side of the water.
-                </p>
+            <section className="grid md:grid-cols-5 px-6 md:px-12 pt-8 md:pt-16 pb-12 gap-10 items-center">
+                <div className="md:col-span-3">
+                    <p className="text-sm text-[--clay] mb-4">About</p>
+                    <h1 className="font-display italic text-4xl md:text-5xl leading-tight">
+                        Twelve years in Sri Lanka, before any of this existed.
+                    </h1>
+                    <p className="mt-6 text-[15px] leading-relaxed text-[--ink]/80 max-w-lg">
+                        Our lead practitioner trained at a small clinic outside Kandy,
+                        under a teacher who took on very few outside students. Sri Ayu
+                        started as a question, whether that same slow, attentive
+                        practice could work somewhere entirely different, on the other
+                        side of the water.
+                    </p>
+                </div>
+                <img
+                    src="/about.jpg"
+                    alt="Ayurvedic practice"
+                    className="md:col-span-2 aspect-video w-full object-cover rounded-sm"
+                />
             </section>
 
             <div className="px-6 md:px-12">
@@ -29,7 +36,7 @@ export default function About() {
                 <div>
                     <h2 className="font-display italic text-2xl mb-3">Why here</h2>
                     <p className="text-sm leading-relaxed text-[--ink]/80">
-                        The property sits on land that's quiet for most of the year —
+                        The property sits on land that's quiet for most of the year -
                         no through traffic, no neighbouring resorts. It's the same
                         reason the original clinic worked: nothing pulling attention
                         away from the treatment.

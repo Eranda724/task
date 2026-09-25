@@ -35,16 +35,15 @@ export default function PropertyDetail() {
                         Built from timber and stone sourced within a day's drive. The
                         treatment house sits apart, reachable by a short path through
                         she-oaks. Everything on the property is built around slowing
-                        down — including the wifi, which is deliberately slow.
+                        down - including the wifi, which is deliberately slow.
                     </p>
                 </div>
-                {/* PHOTO: replace with an exterior shot of the property */}
-                <div
-                    className="md:col-span-2 h-64 md:h-96 w-full"
-                    style={{
-                        background: 'linear-gradient(160deg, #7C8C6B 0%, #2B3A2A 55%, #211D17 100%)',
-                    }}
+                <img
+                    src="/property-exterior.jpg"
+                    alt="Sri Ayu exterior"
+                    className="md:col-span-2 aspect-video w-full object-cover rounded-sm"
                 />
+
             </section>
 
             <div className="px-6 md:px-12">
@@ -56,12 +55,10 @@ export default function PropertyDetail() {
                 <div className="grid md:grid-cols-3 gap-6">
                     {suites.map((s) => (
                         <div key={s.name} className="ticket-border p-6">
-                            {/* PHOTO: replace with an image of this suite */}
-                            <div
-                                className="h-40 w-full mb-4"
-                                style={{
-                                    background: 'linear-gradient(200deg, #EAE1CE 0%, #B4802A 45%, #9C5A3C 100%)',
-                                }}
+                            <img
+                                src={`/suite-${s.name.toLowerCase().replace(' ', '-')}.jpg`}
+                                alt={s.name}
+                                className="h-40 w-full mb-4 object-cover"
                             />
                             <p className="font-display text-xl">{s.name}</p>
                             <p className="text-sm mt-2 text-[--ink]/75 leading-relaxed">
@@ -78,7 +75,7 @@ export default function PropertyDetail() {
                 <p className="max-w-lg text-sm leading-relaxed text-[--parchment]/85">
                     Separate from the suites, facing inland. Two treatment rooms, a
                     steam room, and a resting room where guests are encouraged to stay
-                    for an hour after any session — most do.
+                    for an hour after any session - most do.
                 </p>
             </section>
 
