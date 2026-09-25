@@ -3,6 +3,9 @@ import api from '../../lib/api';
 import AdminLayout from '../../components/AdminLayout';
 
 const fields = [
+    { key: 'propertyName', label: 'Property name' },
+    { key: 'propertyAddress', label: 'Property address' },
+    { key: 'propertyPhone', label: 'Phone number' },
     { key: 'heroLabel', label: 'Hero label (small text above headline)' },
     { key: 'heroTitle', label: 'Hero headline' },
     { key: 'heroIntro', label: 'Hero intro paragraph' },

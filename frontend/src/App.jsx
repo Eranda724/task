@@ -18,70 +18,25 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
+        {/* Public routes */}
         <Route path="/" element={<Home />} />
         <Route path="/treatments" element={<Treatments />} />
         <Route path="/property" element={<PropertyDetail />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
 
+        {/* Admin auth */}
         <Route path="/admin/login" element={<AdminLogin />} />
-        <Route
-          path="/admin"
-          element={
-            <RequireAdmin>
-              <AdminHome />
-            </RequireAdmin>
-          }
-        />
-        <Route
-          path="/admin/bookings"
-          element={
-            <RequireAdmin>
-              <AdminBookings />
-            </RequireAdmin>
-          }
-        />
+
+        {/* Protected admin routes */}
+        <Route path="/admin" element={<RequireAdmin><AdminHome /></RequireAdmin>} />
+        <Route path="/admin/dashboard" element={<RequireAdmin><AdminDashboard /></RequireAdmin>} />
+        <Route path="/admin/bookings" element={<RequireAdmin><AdminBookings /></RequireAdmin>} />
+        <Route path="/admin/rooms" element={<RequireAdmin><AdminRooms /></RequireAdmin>} />
+        <Route path="/admin/content" element={<RequireAdmin><AdminContent /></RequireAdmin>} />
+        <Route path="/admin/staff" element={<RequireAdmin><AdminUsers /></RequireAdmin>} />
+        <Route path="/admin/settings" element={<RequireAdmin><AdminSettings /></RequireAdmin>} />
       </Routes>
-      <Route
-        path="/admin/rooms"
-        element={
-          <RequireAdmin>
-            <AdminRooms />
-          </RequireAdmin>
-        }
-      />
-      <Route
-        path="/admin/dashboard"
-        element={
-          <RequireAdmin>
-            <AdminDashboard />
-          </RequireAdmin>
-        }
-      />
-      <Route
-        path="/admin/settings"
-        element={
-          <RequireAdmin>
-            <AdminSettings />
-          </RequireAdmin>
-        }
-      />
-      <Route
-        path="/admin/staff"
-        element={
-          <RequireAdmin>
-            <AdminUsers />
-          </RequireAdmin>
-        }
-      />
-      <Route
-        path="/admin/content"
-        element={
-          <RequireAdmin>
-            <AdminContent />
-          </RequireAdmin>
-        }
-      />
     </BrowserRouter>
   );
 }

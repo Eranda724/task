@@ -1,10 +1,18 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import api from '../lib/api';
 
 export default function Header() {
+    const [content, setContent] = useState({});
+
+    useEffect(() => {
+        api.get('/content').then((res) => setContent(res.data));
+    }, []);
+
     return (
         <header className="flex items-center justify-between px-6 md:px-12 py-6">
             <Link to="/" className="font-display italic text-xl tracking-tight">
-                Sri Ayu
+                {content.propertyName || 'Sri Ayu'}
             </Link>
             <nav className="hidden md:flex items-center gap-8 text-sm">
                 <Link to="/treatments" className="hover:text-[--ochre]">
