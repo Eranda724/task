@@ -16,11 +16,17 @@ export default function AdminLayout({ children }) {
                 <div>
                     <p className="font-display italic text-xl mb-10">Nirmala Coast</p>
                     <nav className="flex flex-col gap-4 text-sm">
+                        <Link to="/admin/dashboard" className="hover:text-[--ochre]">
+                            Dashboard
+                        </Link>
                         <Link to="/admin/bookings" className="hover:text-[--ochre]">
                             Bookings
                         </Link>
                         <Link to="/admin/rooms" className="hover:text-[--ochre]">
                             Rooms
+                        </Link>
+                        <Link to="/admin/settings" className="hover:text-[--ochre]">
+                            Settings
                         </Link>
                     </nav>
                 </div>

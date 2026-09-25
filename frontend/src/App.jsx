@@ -8,6 +8,9 @@ import AdminLogin from './pages/admin/AdminLogin';
 import AdminHome from './pages/admin/AdminHome';
 import RequireAdmin from './components/RequireAdmin';
 import AdminBookings from './pages/admin/AdminBookings';
+import AdminRooms from './pages/admin/AdminRooms';
+import AdminDashboard from './pages/admin/AdminDashboard';
+import AdminSettings from './pages/admin/AdminSettings';
 
 export default function App() {
   return (
@@ -37,6 +40,30 @@ export default function App() {
           }
         />
       </Routes>
+      <Route
+        path="/admin/rooms"
+        element={
+          <RequireAdmin>
+            <AdminRooms />
+          </RequireAdmin>
+        }
+      />
+      <Route
+        path="/admin/dashboard"
+        element={
+          <RequireAdmin>
+            <AdminDashboard />
+          </RequireAdmin>
+        }
+      />
+      <Route
+        path="/admin/settings"
+        element={
+          <RequireAdmin>
+            <AdminSettings />
+          </RequireAdmin>
+        }
+      />
     </BrowserRouter>
   );
 }
