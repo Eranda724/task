@@ -11,6 +11,8 @@ import AdminBookings from './pages/admin/AdminBookings';
 import AdminRooms from './pages/admin/AdminRooms';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminSettings from './pages/admin/AdminSettings';
+import AdminUsers from './pages/admin/AdminUsers';
+import AdminContent from './pages/admin/AdminContent';
 
 export default function App() {
   return (
@@ -61,6 +63,22 @@ export default function App() {
         element={
           <RequireAdmin>
             <AdminSettings />
+          </RequireAdmin>
+        }
+      />
+      <Route
+        path="/admin/staff"
+        element={
+          <RequireAdmin>
+            <AdminUsers />
+          </RequireAdmin>
+        }
+      />
+      <Route
+        path="/admin/content"
+        element={
+          <RequireAdmin>
+            <AdminContent />
           </RequireAdmin>
         }
       />

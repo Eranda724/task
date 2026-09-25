@@ -17,7 +17,7 @@ export default function Contact() {
                         we reply faster than the form below.
                     </p>
                     <div className="mt-8 text-sm space-y-2 text-[--ink]/80">
-                        <p>hello@nirmalacoast.example</p>
+                        <p>hello@sriayu.example</p>
                         <p>+61 2 0000 0000</p>
                         <p>[Property address], NSW, Australia</p>
                     </div>

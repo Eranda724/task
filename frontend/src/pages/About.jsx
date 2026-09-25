@@ -14,8 +14,8 @@ export default function About() {
                 </h1>
                 <p className="mt-6 text-[15px] leading-relaxed text-[--ink]/80">
                     Our lead practitioner trained at a small clinic outside Kandy,
-                    under a teacher who took on very few outside students. Nirmala
-                    Coast started as a question — whether that same slow, attentive
+                    under a teacher who took on very few outside students. Sri Ayu
+                    started as a question — whether that same slow, attentive
                     practice could work somewhere entirely different, on the other
                     side of the water.
                 </p>

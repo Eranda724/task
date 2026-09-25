@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+import api from '../lib/api';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import LeafDivider from '../components/LeafDivider';
@@ -44,6 +46,11 @@ const dayPlan = [
 ];
 
 export default function Home() {
+    const [content, setContent] = useState({});
+
+    useEffect(() => {
+        api.get('/content').then((res) => setContent(res.data));
+    }, []);
     return (
         <div className="min-h-screen bg-[--parchment] text-[--ink]">
             <Header />
@@ -52,15 +59,13 @@ export default function Home() {
             <section className="grid md:grid-cols-5 px-6 md:px-12 pt-8 md:pt-16 pb-16 gap-10 items-center">
                 <div className="md:col-span-3">
                     <p className="text-sm text-[--clay] mb-4">
-                        A wellness retreat on the New South Wales coast
+                        {content.heroLabel || 'A wellness retreat on the New South Wales coast'}
                     </p>
                     <h1 className="font-display italic text-4xl md:text-6xl leading-[1.08] max-w-xl">
-                        Ayurveda, carried across the water and set down on the coast.
+                        {content.heroTitle || 'Ayurveda, carried across the water and set down on the coast.'}
                     </h1>
                     <p className="mt-6 max-w-md text-[15px] leading-relaxed text-[--ink]/80">
-                        Nirmala Coast brings Sri Lankan Ayurvedic tradition to a single
-                        property on the water — five suites, a treatment house, and a
-                        kitchen that cooks for your constitution rather than a menu.
+                        {content.heroIntro || 'Sri Ayu brings Sri Lankan Ayurvedic tradition to a single property on the water — five suites, a treatment house, and a kitchen that cooks for your constitution rather than a menu.'}
                     </p>
                     <div className="mt-8 flex items-center gap-6">
                         <a
@@ -124,7 +129,7 @@ export default function Home() {
 
             {/* A day here */}
             <section id="stay" className="px-6 md:px-12 py-16 bg-[--moss] text-[--parchment]">
-                <h2 className="font-display italic text-3xl mb-10">A day at Nirmala</h2>
+                <h2 className="font-display italic text-3xl mb-10">A day at Sri Ayu</h2>
                 <div className="grid md:grid-cols-3 gap-10">
                     {dayPlan.map((d) => (
                         <div key={d.time}>
