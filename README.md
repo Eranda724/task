@@ -2,6 +2,8 @@
 
 A premium, full-stack web application built for Sri Ayu, a boutique Ayurvedic retreat. It features a beautifully designed public-facing website for guests and a comprehensive, secure admin dashboard for managing the property.
 
+**🌐 Live Demo:** [https://task-5bt9.vercel.app](https://task-5bt9.vercel.app)  
+**🐙 Source Code:** [https://github.com/Eranda724/task](https://github.com/Eranda724/task)
 ## 🌟 Features
 
 ### Public Website
