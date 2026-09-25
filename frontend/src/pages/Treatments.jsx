@@ -17,8 +17,8 @@ export default function Treatments() {
         <div className="min-h-screen bg-[--parchment] text-[--ink]">
             <Header />
 
-            <section className="grid md:grid-cols-5 px-6 md:px-12 pt-8 md:pt-16 pb-10 gap-10 items-center">
-                <div className="md:col-span-3">
+            <section className="grid md:grid-cols-2 px-6 md:px-12 pt-8 md:pt-16 pb-10 gap-10 items-center">
+                <div>
                     <p className="text-sm text-[--clay] mb-4">Rituals & treatments</p>
                     <h1 className="font-display italic text-4xl md:text-5xl max-w-xl leading-tight">
                         Every treatment starts with a question, not a menu.
@@ -32,7 +32,7 @@ export default function Treatments() {
                 <img
                     src="/treatment-hero.jpg"
                     alt="Ayurvedic treatments at Sri Ayu"
-                    className="md:col-span-2 aspect-video w-full object-cover rounded-sm"
+                    className="aspect-video w-full object-cover rounded-sm"
                 />
             </section>
 

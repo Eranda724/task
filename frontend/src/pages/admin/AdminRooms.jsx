@@ -121,15 +121,25 @@ export default function AdminRooms() {
 
             {showForm && (
                 <form onSubmit={handleSave} className="ticket-border p-6 mb-8 grid gap-4 max-w-md">
-                    <label className="text-sm">
-                        Image
-                        <input
-                            type="file"
-                            accept="image/*"
-                            onChange={handleFileChange}
-                            className="mt-1 w-full border border-[--ink]/30 bg-transparent px-3 py-2 text-sm"
-                        />
-                    </label>
+                    <div>
+                        <span className="text-sm block mb-1">Room Image</span>
+                        <label className="flex flex-col items-center justify-center w-full h-32 px-4 transition bg-black/[0.02] border-2 border-dashed border-[--ink]/20 rounded-sm cursor-pointer hover:border-[#4A6B53] hover:bg-[#4A6B53]/5 group">
+                            <div className="flex flex-col items-center justify-center space-y-2 text-[--ink]/60 group-hover:text-[#4A6B53]">
+                                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
+                                </svg>
+                                <span className="text-sm font-medium">
+                                    {imageFile ? imageFile.name : 'Click to upload room photo'}
+                                </span>
+                            </div>
+                            <input
+                                type="file"
+                                accept="image/*"
+                                onChange={handleFileChange}
+                                className="hidden"
+                            />
+                        </label>
+                    </div>
                     <label className="text-sm">
                         Name
                         <input

@@ -5,29 +5,6 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import LeafDivider from '../components/LeafDivider';
 
-const treatments = [
-    {
-        name: 'Abhyanga',
-        duration: '75 min',
-        note: 'Warm herbal oil, full body, rhythmic strokes to calm the nervous system.',
-    },
-    {
-        name: 'Shirodhara',
-        duration: '60 min',
-        note: 'A slow stream of warm oil across the forehead. Quiets a restless mind.',
-    },
-    {
-        name: 'Panchakarma',
-        duration: '5–14 days',
-        note: 'A guided cleanse, built around your dosha and the season.',
-    },
-    {
-        name: 'Yoga & Pranayama',
-        duration: '45 min',
-        note: 'Morning practice on the deck, facing the water.',
-    },
-];
-
 const dayPlan = [
     {
         time: 'Morning',
@@ -49,18 +26,20 @@ const dayPlan = [
 export default function Home() {
     const [content, setContent] = useState({});
     const [rooms, setRooms] = useState([]);
+    const [treatments, setTreatments] = useState([]);
 
     useEffect(() => {
         api.get('/content').then((res) => setContent(res.data));
         api.get('/rooms').then((res) => setRooms(res.data));
+        api.get('/treatments').then((res) => setTreatments(res.data));
     }, []);
     return (
         <div className="min-h-screen bg-[--parchment] text-[--ink]">
             <Header />
 
             {/* Hero */}
-            <section className="grid md:grid-cols-5 px-6 md:px-12 pt-8 md:pt-16 pb-16 gap-10 items-center">
-                <div className="md:col-span-3">
+            <section className="grid md:grid-cols-2 px-6 md:px-12 pt-8 md:pt-16 pb-16 gap-10 items-center">
+                <div>
                     <p className="text-sm text-[--clay] mb-4">
                         {content.heroLabel || 'A wellness retreat on the New South Wales coast'}
                     </p>
@@ -85,7 +64,7 @@ export default function Home() {
                 <img
                     src="/hero.jpg"
                     alt="Sri Ayu property on the NSW coast"
-                    className="md:col-span-2 aspect-video w-full object-cover rounded-sm"
+                    className="aspect-video w-full object-cover rounded-sm"
                 />
             </section>
 
@@ -121,7 +100,7 @@ export default function Home() {
                     Rituals & treatments
                 </h2>
                 <div className="flex gap-5 overflow-x-auto pb-4 -mx-6 px-6 md:mx-0 md:px-0">
-                    {treatments.map((t) => (
+                    {(treatments || []).map((t) => (
                         <div
                             key={t.name}
                             className="ticket-border shrink-0 w-64 p-6 bg-[--parchment]"

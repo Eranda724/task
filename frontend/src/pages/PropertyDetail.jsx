@@ -15,8 +15,8 @@ export default function PropertyDetail() {
         <div className="min-h-screen bg-[--parchment] text-[--ink]">
             <Header />
 
-            <section className="grid md:grid-cols-5 px-6 md:px-12 pt-8 md:pt-16 pb-12 gap-10 items-center">
-                <div className="md:col-span-3">
+            <section className="grid md:grid-cols-2 px-6 md:px-12 pt-8 md:pt-16 pb-12 gap-10 items-center">
+                <div>
                     <p className="text-sm text-[--clay] mb-4">The property</p>
                     <h1 className="font-display italic text-4xl md:text-5xl leading-tight max-w-xl">
                         {rooms.length || 5} suites, one kitchen, no televisions.
@@ -31,7 +31,7 @@ export default function PropertyDetail() {
                 <img
                     src="/property-exterior.jpg"
                     alt="Sri Ayu exterior"
-                    className="md:col-span-2 aspect-video w-full object-cover rounded-sm"
+                    className="aspect-video w-full object-cover rounded-sm"
                 />
 
             </section>
@@ -63,7 +63,7 @@ export default function PropertyDetail() {
 
             <section className="px-6 md:px-12 py-16 bg-[--moss] text-[--parchment]">
                 <h2 className="font-display italic text-3xl mb-4">The treatment house</h2>
-                <p className="max-w-lg text-sm leading-relaxed text-[--parchment]/85">
+                <p className="max-w-5xl text-[15px] leading-relaxed text-[--parchment]/90">
                     Separate from the suites, facing inland. Two treatment rooms, a
                     steam room, and a resting room where guests are encouraged to stay
                     for an hour after any session - most do.

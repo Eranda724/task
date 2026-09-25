@@ -13,6 +13,7 @@ const userRoutes = require('./routes/userRoutes');
 const contentRoutes = require('./routes/contentRoutes');
 const treatmentRoutes = require('./routes/treatmentRoutes');
 const adminTreatmentRoutes = require('./routes/adminTreatmentRoutes');
+const publicStaffRoutes = require('./routes/publicStaffRoutes');
 
 const app = express();
 
@@ -31,6 +32,7 @@ app.use('/api/admin', accountRoutes);
 app.use('/api/admin', userRoutes);
 app.use('/api', contentRoutes);
 app.use('/api', treatmentRoutes);
+app.use('/api', publicStaffRoutes);
 app.use('/api/admin', adminTreatmentRoutes);
 
 const PORT = process.env.PORT || 5000;
