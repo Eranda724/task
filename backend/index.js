@@ -6,6 +6,9 @@ const bookingRoutes = require('./routes/bookingRoutes');
 const roomRoutes = require('./routes/roomRoutes');
 const authRoutes = require('./routes/authRoutes');
 const adminBookingRoutes = require('./routes/adminBookingRoutes');
+const adminRoomRoutes = require('./routes/adminRoomRoutes');
+const statsRoutes = require('./routes/statsRoutes');
+const accountRoutes = require('./routes/accountRoutes');
 
 const app = express();
 
@@ -18,6 +21,9 @@ app.use('/api', bookingRoutes);
 app.use('/api', roomRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/admin', adminBookingRoutes);
+app.use('/api/admin', adminRoomRoutes);
+app.use('/api/admin', statsRoutes);
+app.use('/api/admin', accountRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
